@@ -3,7 +3,6 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import User from '../models/User';
 
-
 const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
@@ -12,8 +11,8 @@ router.post('/', async (req: Request, res: Response) => {
 
     const count = await mongoose.model('User').countDocuments();
     const id = count + 1;
-    const { username, cpf, birth, address, email, password, type } = req.body;  
-    const user = new User({ id, username, email, password, type });
+    const { username, email, password } = req.body;  
+    const user = new User({ id, username, email, password });
     await user.save();
     res.status(201).json(user);
 
@@ -25,6 +24,7 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 
+
 router.get('/', async (req: Request, res: Response) => {
   try {
     const users = await User.find();
@@ -33,6 +33,7 @@ router.get('/', async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 router.get('/:email', async (req: Request, res: Response) => {
   try {
@@ -55,6 +56,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 
 router.put('/:id', async (req: Request, res: Response) => {

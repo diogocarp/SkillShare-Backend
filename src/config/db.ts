@@ -5,7 +5,7 @@ import pass from './pass';
 const MONGODB_URI = `mongodb+srv://diogocarpinelli:${pass}@cluster0.lhki648.mongodb.net/`;
 
 mongoose.connect(MONGODB_URI, {
-  dbName: 'skillshare'
+  dbName: 'Skillshare'
 });
 
 export async function connectDB() {
