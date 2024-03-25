@@ -1,0 +1,29 @@
+{
+  "name": "skillshare-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogocarp/SkillShare-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diogocarp/SkillShare-Backend/issues"
+  },
+  "homepage": "https://github.com/diogocarp/SkillShare-Backend#readme",
+  "dependencies": {
+    "@types/node": "^20.11.30",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.2.3",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21"
+  }
+}
