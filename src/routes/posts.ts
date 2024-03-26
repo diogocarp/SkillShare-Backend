@@ -11,8 +11,8 @@ router.post('/', async (req: Request, res: Response) => {
 
     const count = await mongoose.model('Post').countDocuments();
     const id = count + 1;
-    const { userEmail, title, description, image } = req.body;  
-    const post = new Post({ id, userEmail, title, description, image });
+    const { username, date, title, description, image } = req.body;  
+    const post = new Post({ id, username, date, title, description, image });
     await post.save();
     res.status(201).json(post);
 
