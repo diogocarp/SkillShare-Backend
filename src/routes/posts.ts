@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Post from '../models/Post';
 
+
 const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
@@ -11,8 +12,8 @@ router.post('/', async (req: Request, res: Response) => {
 
     const count = await mongoose.model('Post').countDocuments();
     const id = count + 1;
-    const { username, date, title, description, image } = req.body;  
-    const post = new Post({ id, username, date, title, description, image });
+    const { username, date, title, description, image, comments } = req.body;  
+    const post = new Post({ id, username, date, title, description, image, comments });
     await post.save();
     res.status(201).json(post);
 
@@ -48,8 +49,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
   try {
-    const { title, description, image } = req.body;
-    const updatedPost = await Post.findByIdAndUpdate(req.params.id, { title, description, image }, { new: true });
+    const { title, description, image, comments } = req.body;
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, { title, description, image, comments }, { new: true });
     if (!updatedPost) {
       return res.status(404).json({ message: 'Post not found' });
     }
