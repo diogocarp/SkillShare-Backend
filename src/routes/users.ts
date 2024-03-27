@@ -11,8 +11,8 @@ router.post('/', async (req: Request, res: Response) => {
 
     const count = await mongoose.model('User').countDocuments();
     const id = count + 1;
-    const { username, email, password } = req.body;  
-    const user = new User({ id, username, email, password });
+    const { username, email, password, skills } = req.body;  
+    const user = new User({ id, username, email, password, skills });
     await user.save();
     res.status(201).json(user);
 
@@ -61,8 +61,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
   try {
-    const { username, email, password } = req.body;
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, { username, email, password }, { new: true });
+    const { username, email, password, skills } = req.body;
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, { username, email, password, skills }, { new: true });
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
