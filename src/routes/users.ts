@@ -85,4 +85,16 @@ router.delete('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/search/:term', async (req: Request, res: Response) => {
+  try {
+    const term = req.params.term; 
+    const users = await User.find({
+      username: { $regex: '^' + term, $options: 'i' }
+    });
+    res.json(users);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;
